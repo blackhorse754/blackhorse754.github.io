@@ -8,7 +8,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    : root {
+    :root {
       --bg:       #0b0d11;
       --surface:  #13151b;
       --surface2: #1a1d26;
@@ -222,6 +222,218 @@
       .paper-year{font-size:22px;}
       .section-title{font-size:28px;}
     }
+
+    /* ── WELCOME TOAST ── */
+    .toast {
+      position:fixed;
+      bottom:28px;right:28px;
+      background:var(--surface);
+      border:1px solid var(--teal-dim);
+      border-radius:4px;
+      padding:20px 24px;
+      max-width:300px;width:calc(100% - 48px);
+      box-shadow:0 8px 32px rgba(0,0,0,.5), 0 0 0 1px var(--teal-glow);
+      z-index:999;
+      display:flex;flex-direction:column;gap:12px;
+      transform:translateY(16px);opacity:0;
+      animation:toastIn .45s .8s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes toastIn{to{transform:translateY(0);opacity:1;}}
+    .toast.hide{animation:toastOut .3s forwards;}
+    @keyframes toastOut{to{transform:translateY(12px);opacity:0;}}
+
+    .toast-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+
+    .toast-avatar {
+      width:36px;height:36px;border-radius:50%;
+      background:var(--teal-glow);border:1px solid var(--teal-dim);
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;flex-shrink:0;
+    }
+    .toast-name {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;
+      letter-spacing:.1em;color:var(--teal);text-transform:uppercase;
+      margin-bottom:2px;
+    }
+    .toast-title {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;
+      color:var(--text-muted);
+    }
+    .toast-close {
+      background:none;border:none;color:var(--text-muted);
+      font-size:16px;cursor:pointer;line-height:1;flex-shrink:0;
+      transition:color .2s;padding:0;
+    }
+    .toast-close:hover{color:var(--teal);}
+
+    .toast-msg {
+      font-size:13.5px;color:var(--text-dim);
+      line-height:1.6;
+    }
+
+    .toast-actions{display:flex;gap:10px;}
+    .toast-cta {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;
+      letter-spacing:.12em;text-transform:uppercase;
+      padding:8px 14px;background:var(--teal);color:var(--bg);
+      border:none;border-radius:2px;cursor:pointer;font-weight:500;
+      text-decoration:none;display:inline-block;
+      transition:opacity .2s;
+    }
+    .toast-cta:hover{opacity:.85;}
+    .toast-skip {
+      font-family:'IBM Plex Mono',monospace;font-size:10px;
+      letter-spacing:.1em;text-transform:uppercase;
+      background:none;border:none;color:var(--text-muted);
+      cursor:pointer;transition:color .2s;
+    }
+    .toast-skip:hover{color:var(--text-dim);}
+
+    /* ══ ABOUT TAB ══ */
+    .about-grid {
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:52px;align-items:start;margin-bottom:72px;
+    }
+
+    .about-text {
+      font-size:15.5px;color:var(--text-dim);
+      line-height:1.9;margin-bottom:28px;
+    }
+    .about-text strong{color:var(--text);}
+
+    .fact-pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:4px;}
+    .fact-pill {
+      display:flex;align-items:center;gap:7px;
+      background:var(--surface);border:1px solid var(--border);
+      border-radius:24px;padding:7px 14px;
+      font-family:'IBM Plex Mono',monospace;font-size:11px;
+      color:var(--text-dim);transition:border-color .2s,color .2s;
+    }
+    .fact-pill:hover{border-color:var(--teal-dim);color:var(--text);}
+    .fact-pill .ei{font-size:15px;}
+
+    /* SLIDESHOW */
+    .slideshow {
+      position:relative;border-radius:4px;overflow:hidden;
+      border:1px solid var(--border);background:var(--surface);
+      aspect-ratio:4/3;
+    }
+    .slide{position:absolute;inset:0;opacity:0;transition:opacity .7s ease;}
+    .slide.active{opacity:1;}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block;}
+
+    /* placeholder slide (shown until real photos added) */
+    .slide-placeholder {
+      width:100%;height:100%;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:12px;
+      background:var(--surface2);
+    }
+    .slide-placeholder .ph-icon{font-size:48px;opacity:.4;}
+    .slide-placeholder .ph-text{
+      font-family:'IBM Plex Mono',monospace;font-size:11px;
+      color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;
+    }
+
+    .slide-caption {
+      position:absolute;bottom:0;left:0;right:0;
+      background:linear-gradient(transparent,rgba(5,7,10,.82));
+      padding:28px 18px 14px;
+      font-family:'IBM Plex Mono',monospace;font-size:11px;
+      color:rgba(255,255,255,.8);letter-spacing:.08em;
+    }
+    .slide-nav {
+      position:absolute;bottom:14px;right:14px;
+      display:flex;gap:6px;
+    }
+    .slide-dot {
+      width:6px;height:6px;border-radius:50%;
+      background:rgba(255,255,255,.3);border:none;
+      cursor:pointer;padding:0;
+      transition:background .25s,transform .25s;
+    }
+    .slide-dot.active{background:var(--teal);transform:scale(1.4);}
+
+    .slide-arrows{
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:100%;display:flex;justify-content:space-between;
+      padding:0 10px;pointer-events:none;
+    }
+    .slide-arrow{
+      background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.12);
+      color:#fff;width:32px;height:32px;border-radius:50%;
+      cursor:pointer;pointer-events:all;font-size:14px;
+      display:flex;align-items:center;justify-content:center;
+      transition:background .2s;
+    }
+    .slide-arrow:hover{background:var(--teal-dim);}
+
+    /* HOBBIES */
+    .hobbies-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+    .hobby-card{
+      background:var(--surface);border:1px solid var(--border);
+      padding:32px;transition:border-color .2s;
+    }
+    .hobby-card:hover{border-color:var(--teal-dim);}
+    .hobby-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+    .hobby-emoji{font-size:30px;line-height:1;}
+    .hobby-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;}
+    .hobby-tag{
+      font-family:'IBM Plex Mono',monospace;font-size:9px;
+      letter-spacing:.18em;text-transform:uppercase;
+      color:var(--teal);margin-bottom:12px;
+    }
+    .hobby-desc{font-size:14px;color:var(--text-dim);line-height:1.75;margin-bottom:22px;}
+
+    .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+    .photo-slot{
+      aspect-ratio:1;border-radius:2px;overflow:hidden;
+      border:1px solid var(--border);position:relative;cursor:pointer;
+      transition:border-color .2s;background:var(--surface2);
+    }
+    .photo-slot:hover{border-color:var(--teal-dim);}
+    .photo-slot img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .3s;
+    }
+    .photo-slot:hover img{transform:scale(1.06);}
+    .photo-slot .ph-overlay{
+      position:absolute;inset:0;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:4px;
+      background:var(--surface2);
+    }
+    .photo-slot .ph-overlay .ph-icon{font-size:28px;opacity:.3;}
+    .photo-slot .ph-overlay .ph-label{
+      font-family:'IBM Plex Mono',monospace;font-size:8.5px;
+      color:var(--text-muted);letter-spacing:.12em;text-transform:uppercase;
+    }
+    /* hide overlay once img loads */
+    .photo-slot img ~ .ph-overlay{display:none;}
+
+    /* LIGHTBOX */
+    .lightbox{
+      display:none;position:fixed;inset:0;
+      background:rgba(0,0,0,.92);z-index:1000;
+      align-items:center;justify-content:center;cursor:zoom-out;
+    }
+    .lightbox.open{display:flex;animation:fadeIn .2s ease;}
+    .lightbox img{
+      max-width:88vw;max-height:82vh;object-fit:contain;
+      border-radius:2px;box-shadow:0 0 80px rgba(0,0,0,.8);
+    }
+    .lb-close{
+      position:absolute;top:18px;right:22px;
+      background:none;border:none;color:#fff;
+      font-size:26px;cursor:pointer;opacity:.65;
+      transition:opacity .2s;line-height:1;
+    }
+    .lb-close:hover{opacity:1;}
+
+    @media(max-width:720px){
+      .about-grid{grid-template-columns:1fr;}
+      .hobbies-grid{grid-template-columns:1fr;}
+      .photo-grid{grid-template-columns:repeat(3,1fr);}
+    }
   </style>
 </head>
 <body>
@@ -256,15 +468,166 @@
 </header>
 
 <nav class="tabs-bar">
-  <button class="tab-btn active" data-tab="education">Education</button>
+  <button class="tab-btn active" data-tab="about">About Me</button>
+  <button class="tab-btn" data-tab="education">Education</button>
   <button class="tab-btn" data-tab="experience">Experience</button>
   <button class="tab-btn" data-tab="skills">Skills</button>
   <button class="tab-btn" data-tab="projects">Projects</button>
   <button class="tab-btn" data-tab="papers">Publications</button>
 </nav>
 
+<!-- ABOUT ME -->
+<section id="tab-about" class="panel active">
+  <div class="about-grid">
+
+    <!-- BIO -->
+    <div>
+      <h2 class="section-title">About Me <span>The Human Behind the Code</span></h2>
+      <p class="about-text">
+        Hi! I'm <strong>Tanurima</strong> — an AI/ML engineer and researcher who genuinely loves
+        building things that matter. My work sits at the intersection of
+        <strong>deep learning, NLP, and healthcare</strong>, whether that's helping ASHA workers
+        get better clinical answers through RAG chatbots, or preserving patient privacy through
+        federated MRI harmonization.
+      </p>
+      <p class="about-text">
+        I grew up in Durgapur(Steel Township), West Bengal, and found my way from Jalpaiguri Government Engineering College to IIT Hyderabad chasing a love for
+        mathematics and machine learning. Outside research, I'm equally passionate about movement
+        and moments — you'll find me dancing or hunting for the perfect photograph.
+      </p>
+      <div class="fact-pills">
+        <span class="fact-pill"><span class="ei">📍</span>Hyderabad, India</span>
+        <span class="fact-pill"><span class="ei">🎓</span>IIT Hyderabad Alumna</span>
+        <span class="fact-pill"><span class="ei">💃</span>Dancer</span>
+        <span class="fact-pill"><span class="ei">📸</span>Photography Lover</span>
+        <span class="fact-pill"><span class="ei">🔬</span>IEEE Published</span>
+        <span class="fact-pill"><span class="ei">☕</span>Runs on coffee & curiosity</span>
+        <span class="fact-pill"><span class="ei">🌿</span>From West Bengal</span>
+        <span class="fact-pill"><span class="ei">🤖</span>AI for Social Good</span>
+      </div>
+    </div>
+
+    <!-- SLIDESHOW -->
+    <!-- 💡 HOW TO ADD YOUR PHOTOS:
+         Replace the placeholder divs below with your own images.
+         Just swap:   <div class="slide-placeholder">...</div>
+         With:        <img src="YOUR-PHOTO-URL-OR-PATH" alt="caption" />
+         You can upload photos to your GitHub repo and use the raw URL. -->
+    <div class="slideshow" id="slideshow">
+
+      <div class="slide active">
+        
+        <div class="slide-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">https://github.com/blackhorse754/blackhorse754.github.io/blob/main/20250105_165043.jpg</span>
+        </div>
+        <div class="slide-caption">"At IIT Bombay, 2025"</div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">https://github.com/blackhorse754/blackhorse754.github.io/blob/main/20260125_183651.jpg</span>
+        </div>
+        <div class="slide-caption">"Beautiful old buidlings"</div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">https://github.com/blackhorse754/blackhorse754.github.io/blob/main/IMG_20220323_174904_HDR.jpg</span>
+        </div>
+        <div class="slide-caption">"Classical Dance performance way back"</div>
+      </div>
+
+      <div class="slide">
+        <div class="slide-placeholder">
+          <span class="ph-icon">🖼️</span>
+          <span class="ph-text">Add your photo here</span>
+        </div>
+        <div class="slide-caption">Your caption — e.g. "Shot on my Canon — Jalpaiguri, 2022"</div>
+      </div>
+
+      <div class="slide-arrows">
+        <button class="slide-arrow" id="slidePrev">‹</button>
+        <button class="slide-arrow" id="slideNext">›</button>
+      </div>
+      <div class="slide-nav" id="slideNav"></div>
+    </div>
+
+  </div><!-- /about-grid -->
+
+  <!-- HOBBIES -->
+  <h2 class="section-title">Beyond the Lab <span>Hobbies & Passions</span></h2>
+  <div class="hobbies-grid">
+
+    <!-- DANCING -->
+    <div class="hobby-card">
+      <div class="hobby-header">
+        <span class="hobby-emoji">💃</span>
+        <h3 class="hobby-name">Dancing</h3>
+      </div>
+      <p class="hobby-tag">Expression · Movement · Stage</p>
+      <p class="hobby-desc">
+        Dance has been my creative outlet for years. There's something about movement that language
+        just can't capture — the way a performance can tell an entire story without a single word.
+        From classical to contemporary, I love exploring different forms and finding the rhythm in
+        everything.
+      </p>
+      <!-- 💡 Replace ph-overlay slots with your dancing photos.
+           To add a photo: replace the entire .ph-overlay div inside a .photo-slot
+           with: <img src="your-dance-photo.jpg" alt="Dancing" /> -->
+      <div class="photo-grid">
+        <div class="photo-slot">
+          <div class="ph-overlay"><span class="ph-icon">💃</span><span class="ph-label">Add photo</span></div>
+        </div>
+        <div class="photo-slot">
+          <div class="ph-overlay"><span class="ph-icon">💃</span><span class="ph-label">Add photo</span></div>
+        </div>
+        <div class="photo-slot">
+          <div class="ph-overlay"><span class="ph-icon">💃</span><span class="ph-label">Add photo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHOTOGRAPHY -->
+    <div class="hobby-card">
+      <div class="hobby-header">
+        <span class="hobby-emoji">📸</span>
+        <h3 class="hobby-name">Photography</h3>
+      </div>
+      <p class="hobby-tag">Light · Composition · Stories</p>
+      <p class="hobby-desc">
+        Photography taught me to slow down and actually <em>look</em> at the world. I'm drawn to
+        candid moments, street scenes, and the way light transforms an ordinary view into something
+        striking. Every photo is a little experiment in perspective — which, honestly, fits perfectly
+        with being a researcher.
+      </p>
+      <!-- 💡 Same as above — swap .ph-overlay for <img src="..."> to add your shots. -->
+      <div class="photo-grid">
+        <div class="photo-slot">
+          <div class="ph-overlay"><span class="ph-icon">📸</span><span class="ph-label">Add photo</span></div>
+        </div>
+        <div class="photo-slot">
+          <div class="ph-overlay"><span class="ph-icon">📸</span><span class="ph-label">Add photo</span></div>
+        </div>
+        <div class="photo-slot">
+          <div class="ph-overlay"><span class="ph-icon">📸</span><span class="ph-label">Add photo</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hobbies-grid -->
+</section>
+
+<!-- LIGHTBOX (shared) -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <img id="lbImg" src="" alt="" />
+</div>
+
 <!-- EDUCATION -->
-<section id="tab-education" class="panel active">
+<section id="tab-education" class="panel">
   <h2 class="section-title">Education <span>Academic Background</span></h2>
   <div class="timeline">
 
@@ -322,8 +685,8 @@
       <h3 class="tl-title">Pre-Doctoral Researcher</h3>
       <p class="tl-sub">Indian Institute of Technology Bombay · Mumbai, India</p>
       <ul class="bullets">
-        <li>Conducted research on federated learning and privacy-preserving machine learning applied to medical imaging datasets across multiple clinical sites.</li>
-        <li>Developed MRI harmonization models using disentangled representation learning, enabling cross-site collaboration without sharing raw patient data.</li>
+        <li> Researched federated learning and privacy-preserving machine learning applied to medical imaging datasets across multiple clinical sites.</li>
+        <li>Developed MRI harmonisation models using disentangled representation learning, enabling cross-site collaboration without sharing raw patient data.</li>
         <li>Produced two peer-reviewed publications accepted at IEEE ICKG 2025 and IEEE ISBI 2025 from this work.</li>
       </ul>
       <div class="chips">
@@ -534,7 +897,46 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════
+     GOOGLE ANALYTICS — paste your GA4 snippet here
+     Steps:
+       1. Go to analytics.google.com → create account
+       2. Create Property → Web → enter your URL
+       3. Copy the "Global site tag (gtag.js)" snippet
+       4. Replace everything between the two dashed lines below
+
+  - - - - - - - - - - - - - - - - - - - - - - - - -
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  - - - - - - - - - - - - - - - - - - - - - - - - -
+════════════════════════════════════════════════════ -->
+
+<!-- ── WELCOME TOAST ── -->
+<div class="toast" id="toast">
+  <div class="toast-top">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="toast-avatar">👋</div>
+      <div>
+        <p class="toast-name">Tanurima Halder</p>
+        <p class="toast-title">AI/ML Engineer · IIT Hyderabad</p>
+      </div>
+    </div>
+    <button class="toast-close" id="toastClose" aria-label="Dismiss">✕</button>
+  </div>
+  <p class="toast-msg">Thanks for stopping by! I'm open to research collaborations and AI/ML roles. Feel free to reach out.</p>
+  <div class="toast-actions">
+    <a class="toast-cta" href="mailto:haldertanurima98@gmail.com">Say Hello →</a>
+    <button class="toast-skip" id="toastSkip">Maybe later</button>
+  </div>
+</div>
+
 <script>
+  /* ── TAB SWITCHING ── */
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -543,6 +945,72 @@
       document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
     });
   });
+
+  /* ── SLIDESHOW ── */
+  const slides   = document.querySelectorAll('.slide');
+  const slideNav = document.getElementById('slideNav');
+  let current    = 0, timer;
+
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Slide ' + (i + 1));
+    d.addEventListener('click', () => goTo(i));
+    slideNav.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    slideNav.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    slideNav.children[current].classList.add('active');
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 3800);
+  }
+
+  document.getElementById('slideNext').addEventListener('click', () => goTo(current + 1));
+  document.getElementById('slidePrev').addEventListener('click', () => goTo(current - 1));
+  resetTimer();
+
+  /* ── LIGHTBOX ── */
+  const lb    = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+
+  document.querySelectorAll('.photo-slot img').forEach(img => {
+    img.addEventListener('click', () => {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+    });
+  });
+
+  function closeLb() { lb.classList.remove('open'); lbImg.src = ''; }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+  /* ── WELCOME TOAST ── */
+  function dismissToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('hide');
+    setTimeout(() => t.style.display = 'none', 300);
+  }
+
+  document.getElementById('toastClose').addEventListener('click', dismissToast);
+  document.getElementById('toastSkip').addEventListener('click', dismissToast);
+
+  /* Show once per session, auto-dismiss after 8 seconds */
+  if (sessionStorage.getItem('toastSeen')) {
+    document.getElementById('toast').style.display = 'none';
+  } else {
+    sessionStorage.setItem('toastSeen', '1');
+    setTimeout(dismissToast, 8000);
+  }
 </script>
 </body>
 </html>
