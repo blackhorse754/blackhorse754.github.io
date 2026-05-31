@@ -97,13 +97,13 @@
       margin: 16px 0 4px;
     }
     .hero-photo {
-      width: 88px;
-      height: 88px;
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: top;
+      object-position: top center;
       border: 2px solid var(--teal-dim);
-      box-shadow: 0 0 0 5px var(--teal-glow);
+      box-shadow: 0 0 0 4px var(--teal-glow);
       flex-shrink: 0;
       opacity: 0;
       animation: fadeUp .6s .25s forwards;
@@ -480,6 +480,8 @@
   </style>
 </head>
 <body>
+<!-- GIF BACKGROUND — set your URL in the .bg-gif CSS above -->
+<div class="bg-gif"></div>
 
 <header class="hero">
   <div>
