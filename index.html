@@ -434,9 +434,36 @@
       .hobbies-grid{grid-template-columns:1fr;}
       .photo-grid{grid-template-columns:repeat(3,1fr);}
     }
+
+    /* ══ GIF BACKGROUND ══
+       Upload your GIF to your GitHub repo, get the raw URL, and set it below.
+       Adjust opacity (currently 0.07) to taste — keep it low so text stays readable.
+       ✅ Raw URL format: raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/your.gif */
+    .bg-gif {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: url(''); /* 👈 Paste your raw GIF URL between the quotes */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+    /* Dark overlay so GIF never overwhelms the text */
+    .bg-gif::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      opacity: 0.55;
+    }
   </style>
 </head>
 <body>
+
+<!-- GIF BACKGROUND — set your URL in the .bg-gif CSS above -->
+<div class="bg-gif"></div>
 
 <header class="hero">
   <div>
@@ -491,7 +518,8 @@
         federated MRI harmonization.
       </p>
       <p class="about-text">
-        I grew up in Durgapur(Steel Township), West Bengal, and found my way from Jalpaiguri Government Engineering College to IIT Hyderabad chasing a love for
+        I grew up in <strong>Durgapur (Steel Township), West Bengal</strong>, and found my way from
+        Jalpaiguri Government Engineering College to IIT Hyderabad, chasing a love for
         mathematics and machine learning. Outside research, I'm equally passionate about movement
         and moments — you'll find me dancing or hunting for the perfect photograph.
       </p>
@@ -508,44 +536,37 @@
     </div>
 
     <!-- SLIDESHOW -->
-    <!-- 💡 HOW TO ADD YOUR PHOTOS:
-         Replace the placeholder divs below with your own images.
-         Just swap:   <div class="slide-placeholder">...</div>
-         With:        <img src="YOUR-PHOTO-URL-OR-PATH" alt="caption" />
-         You can upload photos to your GitHub repo and use the raw URL. -->
+    <!-- ✅ HOW RAW GITHUB IMAGE URLS WORK:
+         ❌ WRONG (blob viewer):  github.com/user/repo/blob/main/photo.jpg
+         ✅ CORRECT (raw file):   raw.githubusercontent.com/user/repo/main/photo.jpg
+         Always use raw.githubusercontent.com so the browser gets the actual image file. -->
     <div class="slideshow" id="slideshow">
 
       <div class="slide active">
-        
-        <div class="slide-placeholder">
-          <span class="ph-icon">🖼️</span>
-          <span class="ph-text">https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20250105_165043.jpg</span>
-        </div>
-        <div class="slide-caption">"At IIT Bombay, 2025"</div>
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20250105_165043.jpg"
+             alt="At IIT Bombay, 2025" />
+        <div class="slide-caption">At IIT Bombay, 2025</div>
       </div>
 
       <div class="slide">
-        <div class="slide-placeholder">
-          <span class="ph-icon">🖼️</span>
-          <span class="ph-text">https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20260125_183651.jpg</span>
-        </div>
-        <div class="slide-caption">"Beautiful old buidlings"</div>
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20260125_183651.jpg"
+             alt="Beautiful old buildings" />
+        <div class="slide-caption">Beautiful old buildings</div>
       </div>
 
       <div class="slide">
-        <div class="slide-placeholder">
-          <span class="ph-icon">🖼️</span>
-          <span class="ph-text">https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174904_HDR.jpg</span>
-        </div>
-        <div class="slide-caption">"Classical Dance performance way back"</div>
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174904_HDR.jpg"
+             alt="Classical Dance performance" />
+        <div class="slide-caption">Classical Dance performance</div>
       </div>
 
+      <!-- 💡 Add a 4th slide: upload another photo to your repo and paste the raw URL below -->
       <div class="slide">
         <div class="slide-placeholder">
           <span class="ph-icon">🖼️</span>
-          <span class="ph-text">Add your photo here</span>
+          <span class="ph-text">Add a 4th photo here</span>
         </div>
-        <div class="slide-caption">Your caption — e.g. "Shot on my Canon — Jalpaiguri, 2022"</div>
+        <div class="slide-caption">Your caption here</div>
       </div>
 
       <div class="slide-arrows">
@@ -601,7 +622,7 @@
         Photography taught me to slow down and actually <em>look</em> at the world. I'm drawn to
         candid moments, street scenes, and the way light transforms an ordinary view into something
         striking. Every photo is a little experiment in perspective — which, honestly, fits perfectly
-        with being a researcher.
+        As a researcher.
       </p>
       <!-- 💡 Same as above — swap .ph-overlay for <img src="..."> to add your shots. -->
       <div class="photo-grid">
@@ -685,8 +706,8 @@
       <h3 class="tl-title">Pre-Doctoral Researcher</h3>
       <p class="tl-sub">Indian Institute of Technology Bombay · Mumbai, India</p>
       <ul class="bullets">
-        <li> Researched federated learning and privacy-preserving machine learning applied to medical imaging datasets across multiple clinical sites.</li>
-        <li>Developed MRI harmonisation models using disentangled representation learning, enabling cross-site collaboration without sharing raw patient data.</li>
+        <li>Conducted research on federated learning and privacy-preserving machine learning applied to medical imaging datasets across multiple clinical sites.</li>
+        <li>Developed MRI harmonization models using disentangled representation learning, enabling cross-site collaboration without sharing raw patient data.</li>
         <li>Produced two peer-reviewed publications accepted at IEEE ICKG 2025 and IEEE ISBI 2025 from this work.</li>
       </ul>
       <div class="chips">
