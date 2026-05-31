@@ -89,6 +89,25 @@
       color:var(--text-dim);margin-top:22px;line-height:1.9;
       opacity:0;animation:fadeUp .6s .35s forwards;
     }
+    /* Profile photo next to name */
+    .hero-photo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin: 16px 0 4px;
+    }
+    .hero-photo {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 2px solid var(--teal-dim);
+      box-shadow: 0 0 0 5px var(--teal-glow);
+      flex-shrink: 0;
+      opacity: 0;
+      animation: fadeUp .6s .25s forwards;
+    }
 
     .hero-meta {
       display:flex;flex-direction:column;gap:10px;align-items:flex-end;
@@ -443,7 +462,7 @@
       position: fixed;
       inset: 0;
       z-index: 0;
-      background-image: url(''); /* 👈 Paste your raw GIF URL between the quotes */
+      background-image: url('https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/file_00000000cad071fa9da1a6fe70d40b93.gif'); /* 👈 Paste your raw GIF URL between the quotes */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -461,9 +480,6 @@
   </style>
 </head>
 <body>
-
-<!-- GIF BACKGROUND — set your URL in the .bg-gif CSS above -->
-  background-image: url('https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/file_00000000cad071fa9da1a6fe70d40b93.gif');
 
 <header class="hero">
   <div>
