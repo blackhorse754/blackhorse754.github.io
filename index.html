@@ -458,30 +458,33 @@
        Upload your GIF to your GitHub repo, get the raw URL, and set it below.
        Adjust opacity (currently 0.07) to taste — keep it low so text stays readable.
        ✅ Raw URL format: raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/your.gif */
-    .bg-gif {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image: url('https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/file_00000000cad071fa9da1a6fe70d40b93.gif'); /* 👈 Paste your raw GIF URL between the quotes */
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.07;
-      pointer-events: none;
-    }
-    /* Dark overlay so GIF never overwhelms the text */
-    .bg-gif::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--bg);
-      opacity: 0.55;
-    }
+      /* GIF BACKGROUND — fixed */
+      .bg-gif {
+        position: fixed;
+        inset: 0;
+        z-index: -1;        /* sits behind everything safely */
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .bg-gif img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.12;      /* raise this if still too faint, e.g. 0.18 */
+        display: block;
+      }
   </style>
 </head>
 <body>
-<!-- GIF BACKGROUND — set your URL in the .bg-gif CSS above -->
-<div class="bg-gif"></div>
+
+<!-- GIF BACKGROUND -->
+<div class="bg-gif">
+  <img
+    src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/file_00000000cad071fa9da1a6fe70d40b93.gif"
+    alt="background_gif"
+  />
+</div>
 
 <header class="hero">
   <div>
