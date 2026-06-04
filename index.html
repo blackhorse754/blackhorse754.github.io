@@ -583,9 +583,9 @@
       </div>
 
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174904_HDR.jpg"
-             alt="Classical Dance performance" />
-        <div class="slide-caption">Classical Dance performance</div>
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20221231_225959.jpg"
+             alt="Beautiful Me" />
+        <div class="slide-caption">beautiful me</div>
       </div>
 
       <!-- 💡 Add a 4th slide: upload another photo to your repo and paste the raw URL below -->
@@ -621,19 +621,22 @@
         From classical to contemporary, I love exploring different forms and finding the rhythm in
         everything.
       </p>
-      <!-- 💡 Replace ph-overlay slots with your dancing photos.
-           To add a photo: replace the entire .ph-overlay div inside a .photo-slot
-           with: <img src="your-dance-photo.jpg" alt="Dancing" /> -->
-      <div class="photo-grid">
-        <div class="photo-slot">
-          <div class="ph-overlay"><span class="ph-icon">💃</span><span class="ph-label">Add photo</span></div>
+      <div class="slideshow hobby-slideshow" id="danceSlideshow">
+        <div class="slide active">
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174904_HDR.jpg"
+               alt="Classical Dance Performance" />
+          <div class="slide-caption">Classical Dance Performance</div>
         </div>
-        <div class="photo-slot">
-          <div class="ph-overlay"><span class="ph-icon">💃</span><span class="ph-label">Add photo</span></div>
+        <div class="slide">
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174931_HDR.jpg"
+               alt="Dance performance" />
+          <div class="slide-caption">Dance performance</div>
         </div>
-        <div class="photo-slot">
-          <div class="ph-overlay"><span class="ph-icon">💃</span><span class="ph-label">Add photo</span></div>
+        <div class="slide-arrows">
+          <button class="slide-arrow" id="dancePrev">‹</button>
+          <button class="slide-arrow" id="danceNext">›</button>
         </div>
+        <div class="slide-nav" id="danceNav"></div>
       </div>
     </div>
 
@@ -648,19 +651,29 @@
         Photography taught me to slow down and actually <em>look</em> at the world. I'm drawn to
         candid moments, street scenes, and the way light transforms an ordinary view into something
         striking. Every photo is a little experiment in perspective — which, honestly, fits perfectly
-        As a researcher.
+        with being a researcher.
       </p>
-      <!-- 💡 Same as above — swap .ph-overlay for <img src="..."> to add your shots. -->
-      <div class="photo-grid">
-        <div class="photo-slot">
-          <div class="ph-overlay"><span class="ph-icon">📸</span><span class="ph-label">Add photo</span></div>
+      <div class="slideshow hobby-slideshow" id="photoSlideshow">
+        <div class="slide active">
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20160111_141222.jpg"
+               alt="Roses" />
+          <div class="slide-caption">Roses</div>
         </div>
-        <div class="photo-slot">
-          <div class="ph-overlay"><span class="ph-icon">📸</span><span class="ph-label">Add photo</span></div>
+        <div class="slide">
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20170516_182521.jpg"
+               alt="Sunsets" />
+          <div class="slide-caption">Sunsets</div>
         </div>
-        <div class="photo-slot">
-          <div class="ph-overlay"><span class="ph-icon">📸</span><span class="ph-label">Add photo</span></div>
+        <div class="slide">
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20250105_165807.jpg"
+               alt="Sky and clouds" />
+          <div class="slide-caption">Sky and clouds</div>
         </div>
+        <div class="slide-arrows">
+          <button class="slide-arrow" id="photoPrev">‹</button>
+          <button class="slide-arrow" id="photoNext">›</button>
+        </div>
+        <div class="slide-nav" id="photoNav"></div>
       </div>
     </div>
 
@@ -993,42 +1006,52 @@
     });
   });
 
-  /* ── SLIDESHOW ── */
-  const slides   = document.querySelectorAll('.slide');
-  const slideNav = document.getElementById('slideNav');
-  let current    = 0, timer;
+  /* ── SLIDESHOWS (reusable — each has its own unique IDs) ── */
+  function makeSlideshow(slideshowId, prevId, nextId, navId) {
+    const container = document.getElementById(slideshowId);
+    if (!container) return;
+    const slides = container.querySelectorAll('.slide');
+    const nav    = document.getElementById(navId);
+    let cur = 0, timer;
 
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
-    d.setAttribute('aria-label', 'Slide ' + (i + 1));
-    d.addEventListener('click', () => goTo(i));
-    slideNav.appendChild(d);
-  });
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Slide ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      nav.appendChild(d);
+    });
 
-  function goTo(n) {
-    slides[current].classList.remove('active');
-    slideNav.children[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    slideNav.children[current].classList.add('active');
-    resetTimer();
+    function goTo(n) {
+      slides[cur].classList.remove('active');
+      nav.children[cur].classList.remove('active');
+      cur = (n + slides.length) % slides.length;
+      slides[cur].classList.add('active');
+      nav.children[cur].classList.add('active');
+      reset();
+    }
+
+    function reset() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(cur + 1), 3800);
+    }
+
+    document.getElementById(nextId).addEventListener('click', () => goTo(cur + 1));
+    document.getElementById(prevId).addEventListener('click', () => goTo(cur - 1));
+    reset();
   }
 
-  function resetTimer() {
-    clearInterval(timer);
-    timer = setInterval(() => goTo(current + 1), 3800);
-  }
-
-  document.getElementById('slideNext').addEventListener('click', () => goTo(current + 1));
-  document.getElementById('slidePrev').addEventListener('click', () => goTo(current - 1));
-  resetTimer();
+  /* Each slideshow gets its own unique set of IDs — no conflicts */
+  makeSlideshow('slideshow',     'slidePrev', 'slideNext', 'slideNav');
+  makeSlideshow('danceSlideshow','dancePrev', 'danceNext', 'danceNav');
+  makeSlideshow('photoSlideshow','photoPrev', 'photoNext', 'photoNav');
 
   /* ── LIGHTBOX ── */
   const lb    = document.getElementById('lightbox');
   const lbImg = document.getElementById('lbImg');
 
-  document.querySelectorAll('.photo-slot img').forEach(img => {
+  /* Works for both photo-slot images and hobby slideshow images */
+  document.querySelectorAll('.photo-slot img, .hobby-slideshow img').forEach(img => {
     img.addEventListener('click', () => {
       lbImg.src = img.src;
       lbImg.alt = img.alt;
