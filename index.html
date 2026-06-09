@@ -529,6 +529,8 @@
   <button class="tab-btn" data-tab="skills">Skills</button>
   <button class="tab-btn" data-tab="projects">Projects</button>
   <button class="tab-btn" data-tab="papers">Publications</button>
+  <button class="tab-btn" data-tab="courses">Courses</button>
+  <button class="tab-btn" data-tab="resume">Resume</button>
 </nav>
 
 <!-- ABOUT ME -->
@@ -571,26 +573,26 @@
     <div class="slideshow" id="slideshow">
 
       <div class="slide active">
-        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20250105_165043.jpg"
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/20250105_165043.jpg"
              alt="At IIT Bombay, 2025" />
         <div class="slide-caption">At IIT Bombay, 2025</div>
       </div>
 
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20260125_183651.jpg"
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/20260125_183651.jpg"
              alt="Beautiful old buildings" />
         <div class="slide-caption">Beautiful old buildings</div>
       </div>
 
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20221231_225959.jpg"
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/IMG_20221231_225959.jpg"
              alt="Beautiful Me" />
         <div class="slide-caption">beautiful me</div>
       </div>
 
       <!-- 💡 Add a 4th slide: upload another photo to your repo and paste the raw URL below -->
       <div class="slide">
-        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20210128_104708.jpg"
+        <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/IMG_20210128_104708.jpg"
              alt="Family time" />
         <div class="slide-caption">Family picture with happy faces and grumpy father</div>
       </div>
@@ -623,12 +625,12 @@
       </p>
       <div class="slideshow hobby-slideshow" id="danceSlideshow">
         <div class="slide active">
-          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174904_HDR.jpg"
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/IMG_20220323_174904_HDR.jpg"
                alt="Classical Dance Performance" />
           <div class="slide-caption">Classical Dance Performance</div>
         </div>
         <div class="slide">
-          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/IMG_20220323_174931_HDR.jpg"
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/IMG_20220323_174931_HDR.jpg"
                alt="Dance performance" />
           <div class="slide-caption">Dance performance</div>
         </div>
@@ -655,17 +657,22 @@
       </p>
       <div class="slideshow hobby-slideshow" id="photoSlideshow">
         <div class="slide active">
-          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20160111_141222.jpg"
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/20160111_141222.jpg"
                alt="Roses" />
           <div class="slide-caption">Roses</div>
         </div>
         <div class="slide">
-          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20170516_182521.jpg"
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/20170516_182521.jpg"
                alt="Sunsets" />
           <div class="slide-caption">Sunsets</div>
         </div>
         <div class="slide">
-          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/20250105_165807.jpg"
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/20250105_165807.jpg"
+               alt="Sky and clouds" />
+          <div class="slide-caption">Sky and clouds</div>
+        </div>
+        <div class="slide">
+          <img src="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/img_folder/photo.jpg"
                alt="Sky and clouds" />
           <div class="slide-caption">Sky and clouds</div>
         </div>
@@ -685,6 +692,238 @@
   <button class="lb-close" id="lbClose">✕</button>
   <img id="lbImg" src="" alt="" />
 </div>
+
+<!-- ══════════ COURSES ══════════ -->
+<!-- 💡 Update these with your actual courses — add/remove course-card blocks freely -->
+<section id="tab-courses" class="panel">
+  <h2 class="section-title">Courses <span>Learning Journey</span></h2>
+
+  <div class="courses-controls">
+    <span class="courses-controls-label">Filter —</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="completed">Completed</button>
+    <button class="filter-btn" data-filter="ongoing">Ongoing</button>
+    <button class="filter-btn" data-filter="planned">Planned</button>
+    <span class="courses-count" id="coursesCount"></span>
+  </div>
+
+  <div class="courses-scroll" id="coursesList">
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">🧠</span>
+      <div class="course-info">
+        <p class="course-name">Deep Learning Specialization</p>
+        <p class="course-platform">Coursera · DeepLearning.AI · Andrew Ng</p>
+        <div class="course-tags">
+          <span class="course-tag">Neural Networks</span>
+          <span class="course-tag">CNNs</span>
+          <span class="course-tag">RNNs</span>
+          <span class="course-tag">Optimization</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+        <a class="cert-link" href="#" target="_blank">Certificate ↗</a>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">💬</span>
+      <div class="course-info">
+        <p class="course-name">Natural Language Processing Specialization</p>
+        <p class="course-platform">Coursera · DeepLearning.AI</p>
+        <div class="course-tags">
+          <span class="course-tag">NLP</span>
+          <span class="course-tag">Attention</span>
+          <span class="course-tag">Transformers</span>
+          <span class="course-tag">Sequence Models</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+        <a class="cert-link" href="#" target="_blank">Certificate ↗</a>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">🤖</span>
+      <div class="course-info">
+        <p class="course-name">LangChain for LLM Application Development</p>
+        <p class="course-platform">DeepLearning.AI · Short Course</p>
+        <div class="course-tags">
+          <span class="course-tag">LangChain</span>
+          <span class="course-tag">RAG</span>
+          <span class="course-tag">LLMs</span>
+          <span class="course-tag">GenAI</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+        <a class="cert-link" href="#" target="_blank">Certificate ↗</a>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">🔐</span>
+      <div class="course-info">
+        <p class="course-name">Federated Learning & Privacy-Preserving ML</p>
+        <p class="course-platform">IIT Bombay · Research Course</p>
+        <div class="course-tags">
+          <span class="course-tag">Federated Learning</span>
+          <span class="course-tag">Privacy</span>
+          <span class="course-tag">Medical Imaging</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">👁️</span>
+      <div class="course-info">
+        <p class="course-name">Computer Vision</p>
+        <p class="course-platform">IIT Hyderabad · M.Tech Core Course</p>
+        <div class="course-tags">
+          <span class="course-tag">CNNs</span>
+          <span class="course-tag">Object Detection</span>
+          <span class="course-tag">Segmentation</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">📊</span>
+      <div class="course-info">
+        <p class="course-name">Applied Machine Learning</p>
+        <p class="course-platform">IIT Hyderabad · M.Tech Core Course</p>
+        <div class="course-tags">
+          <span class="course-tag">Scikit-learn</span>
+          <span class="course-tag">Ensemble Methods</span>
+          <span class="course-tag">Model Selection</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">🔢</span>
+      <div class="course-info">
+        <p class="course-name">Probabilistic Graphical Models</p>
+        <p class="course-platform">IIT Hyderabad · M.Tech Elective</p>
+        <div class="course-tags">
+          <span class="course-tag">Bayesian Networks</span>
+          <span class="course-tag">MRFs</span>
+          <span class="course-tag">Inference</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="completed">
+      <span class="course-icon">📡</span>
+      <div class="course-info">
+        <p class="course-name">TinyML & Efficient Deep Learning</p>
+        <p class="course-platform">MIT HAN Lab · edX</p>
+        <div class="course-tags">
+          <span class="course-tag">Model Compression</span>
+          <span class="course-tag">Quantization</span>
+          <span class="course-tag">Edge AI</span>
+          <span class="course-tag">NAS</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge completed">Completed</span>
+        <a class="cert-link" href="#" target="_blank">Certificate ↗</a>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="ongoing">
+      <span class="course-icon">⚙️</span>
+      <div class="course-info">
+        <p class="course-name">MLOps Specialization</p>
+        <p class="course-platform">Coursera · DeepLearning.AI</p>
+        <div class="course-tags">
+          <span class="course-tag">MLOps</span>
+          <span class="course-tag">CI/CD</span>
+          <span class="course-tag">Model Deployment</span>
+          <span class="course-tag">Monitoring</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge ongoing">Ongoing</span>
+      </div>
+    </div>
+
+    <div class="course-card" data-status="planned">
+      <span class="course-icon">☁️</span>
+      <div class="course-info">
+        <p class="course-name">AWS Machine Learning Specialty</p>
+        <p class="course-platform">Amazon Web Services · Certification</p>
+        <div class="course-tags">
+          <span class="course-tag">AWS</span>
+          <span class="course-tag">Cloud ML</span>
+          <span class="course-tag">SageMaker</span>
+        </div>
+      </div>
+      <div class="course-right">
+        <span class="status-badge planned">Planned</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ RESUME ══════════ -->
+<!-- 💡 Upload your resume PDF to your GitHub repo and update the URLs below -->
+<section id="tab-resume" class="panel">
+  <h2 class="section-title">Resume <span>Download or View</span></h2>
+
+  <div class="resume-top">
+    <div class="resume-actions">
+      <!-- Download button — triggers direct file download -->
+      <a class="resume-dl-btn"
+         href="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/folders/Tanurima-Halder-CV.pdf"
+         download="Tanurima_Halder_Resume.pdf">
+        ⬇ Download PDF
+      </a>
+      <!-- Open in new tab button -->
+      <a class="resume-open-btn"
+         href="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/folders/Tanurima-Halder-CV.pdf"
+         target="_blank">
+        ↗ Open Full Screen
+      </a>
+    </div>
+    <span class="resume-updated">Last updated · 2025</span>
+  </div>
+
+  <!-- Scrollable embedded PDF viewer via Google Docs (most reliable cross-browser) -->
+  <div class="resume-viewer">
+    <iframe
+      src="https://docs.google.com/gview?url=https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/folders/Tanurima-Halder-CV.pdf&embedded=true"
+      title="Tanurima Halder Resume"
+      loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- Fallback message if iframe doesn't load -->
+  <div class="resume-fallback" id="resumeFallback" style="display:none;">
+    <p>The preview couldn't load in your browser.<br>Use the buttons above to download or open the PDF directly.</p>
+    <a class="resume-dl-btn"
+       href="https://raw.githubusercontent.com/blackhorse754/blackhorse754.github.io/main/resume_Tanurima.pdf"
+       download="Tanurima_Halder_Resume.pdf">
+      ⬇ Download PDF
+    </a>
+  </div>
+</section>
+
 
 <!-- EDUCATION -->
 <section id="tab-education" class="panel">
